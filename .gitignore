@@ -15,3 +15,9 @@ dist
 /RUNNING_PID
 /.settings
 /.gradle
+/overlays
+
+*.class
+*.jar
+*.war
+*.ear
