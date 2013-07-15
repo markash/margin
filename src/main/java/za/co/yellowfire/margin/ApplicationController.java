@@ -1,11 +1,10 @@
 package za.co.yellowfire.margin;
 
-import akka.actor.*;
+import akka.actor.ActorSystem;
 import akka.actor.TypedActor;
-import akka.japi.Creator;
+import akka.actor.TypedProps;
 import akka.util.Timeout;
-import scala.Array;
-import scala.collection.immutable.Seq;
+import scala.concurrent.ExecutionContext;
 import scala.concurrent.duration.FiniteDuration;
 import za.co.yellowfire.margin.actor.MarginActor;
 import za.co.yellowfire.margin.actor.MarginCalculator;
@@ -20,7 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped @Named
 public class ApplicationController {
-
     private ActorSystem system;
     private MarginCalculator marginCalculator;
 
@@ -29,6 +27,12 @@ public class ApplicationController {
         Timeout timeout = new Timeout(FiniteDuration.create(5, TimeUnit.SECONDS));
         system = ActorSystem.create("MarginSystem");
         createMarginActor();
+    }
+
+
+    @Produces @Actor
+    public ExecutionContext getExecutionContext() {
+        return system.dispatcher();
     }
 
     @Produces @Margin @Actor

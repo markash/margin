@@ -17,29 +17,20 @@ package za.co.yellowfire.margin.securities;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.joda.time.LocalDate;
 import za.co.yellowfire.carat.event.Event;
-import za.co.yellowfire.carat.securities.Allocation;
-import za.co.yellowfire.carat.securities.Deliverable;
+import za.co.yellowfire.carat.securities.Trade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@ToString
-public class AllocationEvent implements Event, Allocation, Deliverable {
-    /**
-     * The allocation id is the identifier that makes the allocation unique across systems and is independent of db id.
-     * @return The identifier
-     */
-    @Getter @Setter
-    private String id;
+public class TradeEvent implements Event, Trade {
 
     @Getter @Setter
-    private String broker;
+    private String buyer;
 
     @Getter @Setter
-    private String accountNumber;
+    private String seller;
 
     @Getter @Setter
     private String instrument;
@@ -58,4 +49,13 @@ public class AllocationEvent implements Event, Allocation, Deliverable {
 
     @Getter @Setter
     private LocalDate settlementDate;
+
+    /**
+     * The allocation id is the identifier that makes the allocation unique across systems and is independent of db id.
+     * @return The identifier
+     */
+    @Override
+    public Serializable getId() {
+        return null;
+    }
 }

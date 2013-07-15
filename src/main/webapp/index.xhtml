@@ -1,12 +1,61 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:cc="http://java.sun.com/jsf/composite/component"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
                 template="/templates/main.xhtml">
     <ui:define name="content">
 
+        <h:form id="positionsForm" >
+            <div class="page-header"><h2>Marginable Positions</h2></div>
+            <h:dataTable value="#{messageController.marginPositions}" var="o"
+                         first="#{messageController.marginPositions.first}" rows="#{messageController.marginPositions.rowCount}"
+                         styleClass="table table-striped table-bordered table-condensed table-hover">
+                <h:column><f:facet name="header">Id</f:facet>#{o.id.allocationId}</h:column>
+                <h:column><f:facet name="header">Settle. Date</f:facet>#{o.id.settlementDate}</h:column>
+                <h:column><f:facet name="header">Account</f:facet>#{o.accountNumber}</h:column>
+                <h:column><f:facet name="header">Instrument</f:facet>#{o.instrument}</h:column>
+                <h:column><f:facet name="header">Quantity</f:facet>#{o.quantity}</h:column>
+                <h:column><f:facet name="header">Price</f:facet>#{o.price}</h:column>
+                <h:column><f:facet name="header">Money</f:facet>#{o.money}</h:column>
+            </h:dataTable>
+            <cc:pagination id="userPagination" bean="#{messageController.marginPositions}" />
+        </h:form>
         <h:form id="helloForm" >
-            <h:inputText id="username" value="#{messageController.name}"/>
-            <h:commandButton id="submit" action="#{messageController.onSubmit}" value="Submit" styleClass="btn"/>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="allocation_id" value="Id:" />
+                <h:inputText id="allocation_id" value="#{messageController.allocationEvent.id}" required="true">
+                    <f:ajax event="blur" render="m_allocation_id" />
+                </h:inputText>
+                <h:message id="m_allocation_id" for="allocation_id" />
+
+                <h:outputLabel for="allocation_instrument" value="Instrument:" />
+                <h:inputText id="allocation_instrument" value="#{messageController.allocationEvent.instrument}" required="true">
+                    <f:ajax event="blur" render="m_allocation_instrument" />
+                </h:inputText>
+                <h:message id="m_allocation_instrument" for="allocation_instrument" />
+
+                <h:outputLabel for="allocation_qty" value="Quantity:" />
+                <h:inputText id="allocation_qty" value="#{messageController.allocationEvent.quantity}" required="true">
+                    <f:ajax event="blur" render="m_allocation_qty" />
+                </h:inputText>
+                <h:message id="m_allocation_qty" for="allocation_qty" />
+
+                <h:outputLabel for="allocation_price" value="Price:" />
+                <h:inputText id="allocation_price" value="#{messageController.allocationEvent.price}" required="true">
+                    <f:ajax event="blur" render="m_allocation_price" />
+                </h:inputText>
+                <h:message id="m_allocation_price" for="allocation_price" />
+
+                <h:outputLabel for="allocation_money" value="Money:" />
+                <h:inputText id="allocation_money" value="#{messageController.allocationEvent.money}" required="true">
+                    <f:ajax event="blur" render="m_allocation_money" />
+                </h:inputText>
+                <h:message id="m_allocation_money" for="allocation_money" />
+
+            </h:panelGrid>
+            <h:commandButton id="submit" action="#{messageController.onSubmit}" value="Submit" styleClass="btn btn-primary"/>
+            <h:commandButton id="reset" action="#{messageController.onReset}" value="Reset" styleClass="btn"/>
         </h:form>
     </ui:define>
 </ui:composition>

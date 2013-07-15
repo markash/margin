@@ -15,12 +15,10 @@
  */
 package za.co.yellowfire.carat.securities;
 
-import java.io.Serializable;
-
-public interface Identifiable {
+public interface Identifiable<T> {
 	/**
 	 * Returns the identifier of the entity
 	 * @return The identifier
 	 */
-	Serializable getId();
+	T getId();
 }

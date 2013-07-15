@@ -6,7 +6,7 @@
     <parent>
         <groupId>za.co.yellowfire</groupId>
         <artifactId>carat-parent</artifactId>
-        <version>0.1.1</version>
+        <version>0.1.3</version>
     </parent>
 
     <artifactId>margin</artifactId>
@@ -31,7 +31,12 @@
         <dependency>
             <groupId>za.co.yellowfire</groupId>
             <artifactId>carat-db</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>za.co.yellowfire</groupId>
+            <artifactId>carat-web</artifactId>
+            <version>0.1.1</version>
         </dependency>
         <!--************************************************************************************************************
              Overlay
@@ -39,9 +44,15 @@
         <dependency>
             <groupId>za.co.yellowfire</groupId>
             <artifactId>carat</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.3</version>
             <type>war</type>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>za.co.yellowfire</groupId>
+            <artifactId>carat</artifactId>
+            <version>0.1.3</version>
+            <type>warpath</type>
         </dependency>
         <dependency>
             <groupId>com.typesafe.akka</groupId>
